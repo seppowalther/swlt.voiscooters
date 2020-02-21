@@ -7,16 +7,16 @@ def get_otp_data():
     }
     return get_otp_data
 
-def verify_otp_data(get_otp_token):
+def verify_otp_data(get_otp_code, get_otp_token):
     verify_otp_data={
-        "code": "280355",
+        "code": get_otp_code,
         "token": get_otp_token
     }
     return verify_otp_data
 
-def get_first_authToken_data(get_otp_token):
+def get_first_authToken_data(email, get_otp_token):
     get_first_authToken_data={
-        "email": "seppowalther@mail.de",
+        "email": email,
         "token": get_otp_token
     }
     return get_first_authToken_data
