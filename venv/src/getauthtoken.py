@@ -21,6 +21,8 @@ def get_first_authToken_data(get_otp_token):
     }
     return get_first_authToken_data
 
+def get_otp():
+    print("testing")
 
 
 
