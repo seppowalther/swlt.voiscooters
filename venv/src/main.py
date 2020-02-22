@@ -36,9 +36,37 @@ def getscooternumber(accesstoken, zoneid):
     # zones = getzonesinfodict.get("zones")
 
     number = len(getscooternumberdict)
-    print("In der ausgewählten Stadt stehen gerade " + str(number) + " Voi Scooter zur Ausleihe bereit.")
+    newnumber = 0
+
+    for i in range(0, number):
+        model = getscooternumberdict[i]['type']
+        lastupdate = getscooternumberdict[i]['updated']
+        if lastupdate.startswith('2020-02'):
+            newnumber = newnumber + 1
+
+    print("In der ausgewählten Stadt stehen gerade " + str(newnumber) + " Voi Scooter zur Ausleihe bereit.")
     # for i in range(0, number):
         # print(getscooterinfodict[i]['short'])
+
+def getscootermodel(accesstoken, zoneid):
+    accesstoken = accesstoken
+    getscooternumberresult = requests.get("https://api.voiapp.io/v1/vehicles/zone/"+zoneid+"/ready", headers=getzonesinfoheaders(accesstoken))
+    getscooternumberdict = getscooternumberresult.json()
+
+    # zones = getzonesinfodict.get("zones")
+
+    number = len(getscooternumberdict)
+    list = []
+    for i in range(0, number):
+        model = getscooternumberdict[i]['type']
+        lastupdate = getscooternumberdict[i]['updated']
+        if model in list:
+            pass
+        else:
+            if lastupdate.startswith('2020-02'):
+                list.append(model)
+    print(list)
+
 
 def main():
     accesstoken = opensession()
@@ -54,12 +82,15 @@ def main():
     print("Super. Wofür interessieren Sie sich?")
     print("")
     print("Wie viele Roller stehen zur Verfügung? (1)")
+    print("Welche Rollermodelle werden eingesetzt? (2)")
     print("")
     print("-----------------------")
     method = input("Auswahl eingeben: ")
     print("-----------------------")
     if method == "1":
         getscooternumber(accesstoken, zoneid)
+    elif method == "2":
+        getscootermodel(accesstoken, zoneid)
 
 if __name__ == "__main__":
     main()
