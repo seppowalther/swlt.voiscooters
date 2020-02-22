@@ -28,25 +28,38 @@ def getzonesinfo(accesstoken):
         print(zones[i]['name'] + " (" + zones[i]['zone_id'] + ")")
 
 
-def getscooterinfo(accesstoken, zoneid):
+def getscooternumber(accesstoken, zoneid):
     accesstoken = accesstoken
-    getscooterinforesult = requests.get("https://api.voiapp.io/v1/vehicles/zone/"+zoneid+"/ready", headers=getzonesinfoheaders(accesstoken))
-    getscooterinfodict = getscooterinforesult.json()
+    getscooternumberresult = requests.get("https://api.voiapp.io/v1/vehicles/zone/"+zoneid+"/ready", headers=getzonesinfoheaders(accesstoken))
+    getscooternumberdict = getscooternumberresult.json()
 
     # zones = getzonesinfodict.get("zones")
 
-    number = len(getscooterinfodict)
+    number = len(getscooternumberdict)
     print("In der ausgewählten Stadt stehen gerade " + str(number) + " Voi Scooter zur Ausleihe bereit.")
     # for i in range(0, number):
         # print(getscooterinfodict[i]['short'])
 
 def main():
     accesstoken = opensession()
+    print("======================")
+    print("Sie sehen gleich eine Liste mit den Städten, in denen Voi aktiv ist. Hinter dem Städtenamen befindet sich in Klammern die zugehörige Zone-ID.")
+    print("Um Informationen über Roller im Voi-System abzufragen, wählen Sie bitte die gewünschte Stadt aus, indem Sie die Zone-ID eingeben.")
+    print("Wenn Sie diese Information gelesen und verstanden haben, klicken Sie bitte ENTER um fortzufahren.")
+    input()
     getzonesinfo(accesstoken)
     print("-----------------------")
     zoneid = input("Zone_ID eingeben: ")
     print("-----------------------")
-    getscooterinfo(accesstoken, zoneid)
+    print("Super. Wofür interessieren Sie sich?")
+    print("")
+    print("Wie viele Roller stehen zur Verfügung? (1)")
+    print("")
+    print("-----------------------")
+    method = input("Auswahl eingeben: ")
+    print("-----------------------")
+    if method == "1":
+        getscooternumber(accesstoken, zoneid)
 
 if __name__ == "__main__":
     main()
