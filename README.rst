@@ -7,9 +7,9 @@ This is a Python script, that let's you open API-Sessions with the Voi System, t
 Information
 -----------
 
-|Because I'm pretty much interested in the number of the rented scooters in my city, the goal here is to develop an algorithm which detects if a scooter that goes offline, if it has been rented by a customer or if it was retired for recharging or maintenance purposes by the scooter company.
-|Please consider this as under development.
-|There is still much much work to do.
+| Because I'm pretty much interested in the number of the rented scooters in my city, the goal here is to develop an algorithm which detects if a scooter that goes offline, if it has been rented by a customer or if it was retired for recharging or maintenance purposes by the scooter company.
+| Please consider this as under development.
+| There is still much much work to do.
 
 How to use
 ----------
